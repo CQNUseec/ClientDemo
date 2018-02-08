@@ -2,10 +2,7 @@
 #define GRTPLUGINMGR_H
 #include <map>
 #include <vector>
-#include <QString>
 #include <string>
-#include <QPluginLoader>
-#include <QHash>
 #if defined(GRTPLUGINMGR_LIBRARY)
 #  define GRTPLUGINMGRSHARED_EXPORT __declspec(dllexport)
 #else
@@ -26,7 +23,6 @@ public:
     GRTPluginMgr();
     ~GRTPluginMgr();
     int loadPlugin(std::string filePath);
-private:
     int scanThePluginDirectory(std::vector<PluginConfigInfo> &pluginInfos);
 private:
     std::map<std::string, QPluginLoader*>   m_plugins;

@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "../GRTPluginMgr/grtpluginmgr.h"
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
@@ -15,5 +16,12 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
     GRTPluginMgr mgr;
+    std::vector<PluginConfigInfo>  pluginInfos;
+    mgr.scanThePluginDirectory(pluginInfos);
+    std::cout << pluginInfos.size() << std::endl;
+    for(auto var : pluginInfos)
+    {
+        std::cout << var.PluginFilePath << " " << var.qmlFilePath << " " << var.iconFilePath << " " << std::endl;
+    }
     return app.exec();
 }
